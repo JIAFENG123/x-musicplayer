@@ -1,20 +1,25 @@
 {
   "name": "x-musicplayer",
-  "private": true,
-  "version": "0.0.0",
   "type": "module",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "fix": "eslint --fix ."
   },
   "dependencies": {
+    "@antfu/eslint-config": "^0.40.2",
     "@types/node": "^20.5.0",
+    "prettier": "^3.0.2",
     "vue": "^3.3.4",
     "vue-router": "4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
+    "eslint": "^8.47.0",
     "typescript": "^5.0.2",
     "unocss": "^0.55.0",
     "vite": "^4.4.5",
