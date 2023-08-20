@@ -1,5 +1,9 @@
 {
   "extends": [
     "@antfu"
-  ]
+  ],
+  "rules": {
+    // your overrides
+    "no-console": "off"
+  }
 }
