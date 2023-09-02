@@ -2,9 +2,11 @@ lockfileVersion: 5.3
 
 specifiers:
   '@antfu/eslint-config': ^0.40.2
+  '@iconify/vue': ^4.1.1
   '@types/node': ^20.5.0
   '@vitejs/plugin-vue': ^4.2.3
   eslint: ^8.47.0
+  mitt: ^3.0.1
   prettier: ^3.0.2
   sass: ^1.66.0
   typescript: ^5.0.2
@@ -17,12 +19,14 @@ specifiers:
 dependencies:
   '@antfu/eslint-config': 0.40.2_eslint@8.47.0+typescript@5.1.6
   '@types/node': 20.5.0
+  mitt: 3.0.1
   prettier: 3.0.2
   sass: 1.66.0
   vue: 3.3.4
   vue-router: 4.2.4_vue@3.3.4
 
 devDependencies:
+  '@iconify/vue': 4.1.1_vue@3.3.4
   '@vitejs/plugin-vue': 4.2.3_vite@4.4.9+vue@3.3.4
   eslint: 8.47.0
   typescript: 5.1.6
@@ -437,6 +441,15 @@ packages:
       local-pkg: 0.4.3
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@iconify/vue/4.1.1_vue@3.3.4:
+    resolution: {integrity: sha512-RL85Bm/DAe8y6rT6pux7D2FJSiUEM/TPfyK7GrbAOfTSwrhvwJW+S5yijdGcmtXouA8MtuH9C7l4hiSE4mLMjg==}
+    peerDependencies:
+      vue: '>=3'
+    dependencies:
+      '@iconify/types': 2.0.0
+      vue: 3.3.4
     dev: true
 
   /@jridgewell/gen-mapping/0.3.3:
@@ -2228,6 +2241,10 @@ packages:
     dependencies:
       brace-expansion: 2.0.1
     dev: true
+
+  /mitt/3.0.1:
+    resolution: {integrity: sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==}
+    dev: false
 
   /mlly/1.4.0:
     resolution: {integrity: sha512-ua8PAThnTwpprIaU47EPeZ/bPUVp2QYBbWMphUQpVdBI3Lgqzm5KZQ45Agm3YJedHXaIHl6pBGabaLSUPPSptg==}

@@ -1,9 +1,14 @@
 <script lang='ts' setup>
 import { ref } from 'vue'
+import emitter from '../eventBus'
 
+const searchVal = ref('')
 const opened = ref(false)
 function openSearch() {
-  opened.value = !opened.value
+  if (opened.value && searchVal.value)
+    emitter.emit('search', searchVal.value)
+
+  else opened.value = !opened.value
 }
 </script>
 
@@ -14,6 +19,7 @@ function openSearch() {
     </section>
     <section flex justify-center items-center :b="opened ? 'b-1.5 b-blue-4 b-solid' : 'none'">
       <input
+        v-model="searchVal"
         :w="opened ? 60 : 0" border-none outline-none transition="all" duration="450" type="text"
         placeholder="Search"
       >
