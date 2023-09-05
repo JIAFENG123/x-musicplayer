@@ -14,13 +14,13 @@ function openSearch() {
 
 <template>
   <div flex justify-between px-5 py-6>
-    <section w-12 h-12 bg="#C67D0F30" rounded="1/2" flex justify-center items-center>
+    <section w-11 h-11 bg="#C67D0F30" rounded="1/2" flex justify-center items-center>
       <img src="@/assets/header.png" alt="">
     </section>
     <section flex justify-center items-center :b="opened ? 'b-1.5 b-blue-4 b-solid' : 'none'">
       <input
         v-model="searchVal"
-        :w="opened ? 60 : 0" border-none outline-none transition="all" duration="450" type="text"
+        :w="opened ? 54 : 0" border-none outline-none transition="all" duration="450" type="text"
         placeholder="Search"
       >
       <section w="11" h="11" bg="#9570FF30" rounded="1/2" flex justify-center items-center>

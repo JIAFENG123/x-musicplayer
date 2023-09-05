@@ -16,16 +16,58 @@ nextTick(() => {
 })
 
 const songList = ref<SongItem[]>([])
+function getJsonUrl() {
+  return fetch(
+    'https://api.github.com/gists/cb11eaafbe69fc7ba63c38f9ff40e0d9',
+    {
+      headers: {
+        Authorization: '',
+        Accept: 'application/vnd.github+json',
+      },
+    },
+  )
+    .then(res => res.json())
+    .then((res) => {
+      return res.files['jay-music.json'].raw_url
+    })
+}
+function getDataList() {
+  return getJsonUrl().then((url) => {
+    return fetch(url)
+      .then(res => res.json())
+      .then((res) => {
+        return res.list
+      })
+  })
+}
+function formatTime(duration: number) {
+  const minutes = Math.floor(duration / 60)
+  const seconds = Math.floor(duration % 60)
+  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
+}
 async function fetchData() {
   const headers = new Headers()
   headers.append('X-RapidAPI-Key', '6cfd8e0d69msh815d1ce33eb826ap13c99fjsn97c1ea1b663c')
   headers.append('X-RapidAPI-Host', 'deezerdevs-deezer.p.rapidapi.com')
-  const res = await fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${query.value}`, {
-    method: 'GET',
-    headers,
+  // const res = await fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${query.value}`, {
+  //   method: 'GET',
+  //   headers,
+  // })
+  const res = await getDataList()
+  console.log(res)
+  const jsonData = res.map((item: any) => {
+    return {
+      id: item.id,
+      title: `${item.name}-${item.album?.name}` || '',
+      album: {
+        cover_medium: item.songInfo.picUrl,
+      },
+      preview: item.songInfo?.preview,
+      time: formatTime(item.songInfo?.duration),
+    }
   })
-  const json = await res.json()
-  songList.value = json.data
+  // const json = await res.json()
+  songList.value = jsonData
   emitter.emit('songs', songList.value)
 }
 emitter.on('search', (val) => {
@@ -40,10 +82,10 @@ fetchData()
 
 <template>
   <section ref="songRef" p-4 style="max-height: calc(100vh - 180px);overflow-y: auto;">
-    <div v-for="i in songList" :key="i.id" flex w-full items-center mb-2 p-5 bg="#9570FF1A" rounded-4 @click="checkSong(i)">
-      <img w="12" h="12" rounded="1/2" :src="i.album.cover_medium" alt="">
+    <div v-for="i in songList" :key="i.id" flex w-full items-center mb-2 p-3 bg="#9570FF1A" rounded-4 @click="checkSong(i)">
+      <img w="11" h="11" rounded="1/2" :src="i.album.cover_medium" alt="">
       <section flex flex-col ml-5>
-        <span color="#000" font="mono" font-size-5 font-700>{{ i .title }}</span>
+        <span color="#000" font="mono" font-size-4 font-700>{{ i .title }}</span>
         <section flex items-center>
           <svg
             style="width: 20px;height: 20px;" width="16" height="16" viewBox="0 0 13 14" fill="none"
@@ -55,7 +97,7 @@ fetchData()
               fill="white"
             />
           </svg>
-          <!-- <span color="#828282" font-size-4 ml-1>3:45</span> -->
+          <span color="#828282" font-size-3 ml-1>{{ i.time }}</span>
         </section>
       </section>
     </div>

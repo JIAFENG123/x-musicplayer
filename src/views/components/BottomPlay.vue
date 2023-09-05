@@ -130,7 +130,7 @@ function next() {
 }
 
 svg {
-  margin-bottom: -11px;
+  margin-bottom: -12px;
 }
 // debance 动画
 .bounce-enter-active {

@@ -5,4 +5,5 @@ export interface SongItem {
   album: {
     cover_medium: string
   }
+  time?: string
 }
