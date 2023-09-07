@@ -17,8 +17,9 @@ nextTick(() => {
 
 const songList = ref<SongItem[]>([])
 function getJsonUrl() {
+  // https://gist.githubusercontent.com/JIAFENG123/517a7c8befd92caf9eb9694d780bb290/raw/b2dfe5f25b1dffa85919184ac67ee10e244c0259/json
   return fetch(
-    'https://api.github.com/gists/cb11eaafbe69fc7ba63c38f9ff40e0d9',
+    'https://api.github.com/gists/517a7c8befd92caf9eb9694d780bb290',
     {
       headers: {
         Authorization: '',
@@ -28,7 +29,7 @@ function getJsonUrl() {
   )
     .then(res => res.json())
     .then((res) => {
-      return res.files['jay-music.json'].raw_url
+      return res.files.json.raw_url
     })
 }
 function getDataList() {
@@ -62,7 +63,7 @@ async function fetchData() {
       album: {
         cover_medium: item.songInfo.picUrl,
       },
-      preview: item.songInfo?.preview,
+      preview: item.songInfo[320],
       time: formatTime(item.songInfo?.duration),
     }
   })
