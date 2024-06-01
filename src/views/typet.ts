@@ -1,9 +1,12 @@
 export interface SongItem {
-  id: number
+  id: string
   preview: string
   title: string
   album: {
     cover_medium: string
   }
   time?: string
+  songInfo?: {
+    lyric: string
+  }
 }

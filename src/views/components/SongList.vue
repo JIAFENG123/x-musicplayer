@@ -55,7 +55,8 @@ async function fetchData() {
   //   headers,
   // })
   const res = await getDataList()
-  console.log(res)
+  console.log('----', res)
+  sessionStorage.setItem('songList', JSON.stringify(res))
   const jsonData = res.map((item: any) => {
     return {
       id: item.id,
